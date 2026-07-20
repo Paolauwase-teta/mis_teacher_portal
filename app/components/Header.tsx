@@ -48,32 +48,32 @@ function Dropdown({
 const NOTIFICATIONS = [
   {
     id: 5, type: "info", icon: <ShieldCheck size={14} className="text-[#1E3A5F]" />,
-    title: "Accreditation Approved",
-    body: "Rugando Commercial Complex has passed all zoning audits. You can now define funding targets.",
+    title: "Registration Open",
+    body: "The registration window for RCA Hackathon 2026 is now open.",
     time: "5 min ago", unread: true,
   },
   {
     id: 1, type: "success", icon: <CheckCircle size={14} className="text-emerald-500" />,
-    title: "Milestone verified",
-    body: "Phase 1 of Kigali Heights Residences has been verified by the notary.",
+    title: "Team Registered",
+    body: "Team Tech Titans has successfully registered for the hackathon.",
     time: "2 min ago", unread: true,
   },
   {
     id: 2, type: "warning", icon: <AlertTriangle size={14} className="text-amber-500" />,
-    title: "Document missing",
-    body: "Building permit for Nyarutarama Green Villas is overdue. Upload before June 5.",
+    title: "Mentor Unassigned",
+    body: "Team Code Crafters does not have a mentor assigned yet. Please assign one.",
     time: "1 hr ago", unread: true,
   },
   {
     id: 3, type: "info", icon: <Clock size={14} className="text-[#1E3A5F]" />,
-    title: "Investor joined",
-    body: "A new investor committed $5,000 to Kigali Heights Residences.",
+    title: "Pitch Schedule Updated",
+    body: "The pitch schedule has been published for all teams.",
     time: "3 hrs ago", unread: true,
   },
   {
     id: 4, type: "success", icon: <CheckCircle size={14} className="text-emerald-500" />,
-    title: "Fund released",
-    body: "$150,000 tranche from Nyarutarama project has been sent to your wallet.",
+    title: "Scoring Complete",
+    body: "All teams have been scored by the judges. Results are ready to publish.",
     time: "Yesterday", unread: false,
   },
 ];
@@ -83,7 +83,7 @@ function NotificationsPanel({ onClose }: { onClose: () => void }) {
     <div>
       <div className="flex items-center justify-between px-5 py-4 border-b border-stone-100">
         <div>
-          <p className="font-black text-stone-900 text-[13px]">Notifications</p>
+          <p className="font-light text-stone-900 text-[13px]">Notifications</p>
           <p className="text-[10px] text-stone-400 mt-0.5">3 unread alerts</p>
         </div>
         <button onClick={onClose} className="p-1 rounded-lg hover:bg-stone-100 text-stone-400 transition-colors">
@@ -96,17 +96,17 @@ function NotificationsPanel({ onClose }: { onClose: () => void }) {
             <div className="mt-0.5 shrink-0">{n.icon}</div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center justify-between gap-2">
-                <p className={`text-[12px] font-bold truncate ${n.unread ? "text-stone-900" : "text-stone-600"}`}>{n.title}</p>
+                <p className={`text-[12px] font-light truncate ${n.unread ? "text-stone-900" : "text-stone-600"}`}>{n.title}</p>
                 {n.unread && <div className="w-1.5 h-1.5 rounded-full bg-[#1E3A5F] shrink-0" />}
               </div>
               <p className="text-[11px] text-stone-400 mt-0.5 leading-snug">{n.body}</p>
-              <p className="text-[10px] text-stone-300 mt-1 font-medium">{n.time}</p>
+              <p className="text-[10px] text-stone-300 mt-1 font-light">{n.time}</p>
             </div>
           </div>
         ))}
       </div>
       <div className="px-5 py-3 bg-stone-50">
-        <button className="text-[11px] font-bold text-[#1E3A5F] hover:underline w-full text-center">
+        <button className="text-[11px] font-light text-[#1E3A5F] hover:underline w-full text-center">
           View all notifications
         </button>
       </div>
@@ -116,17 +116,17 @@ function NotificationsPanel({ onClose }: { onClose: () => void }) {
 
 // ── Help panel ────────────────────────────────────────────────────
 const HELP_ITEMS = [
-  { icon: <BookOpen size={15} className="text-[#1E3A5F]" />, title: "Documentation", desc: "Guides on submissions, milestones & fund requests" },
-  { icon: <MessageCircle size={15} className="text-emerald-600" />, title: "Live chat support", desc: "Chat with our team (Mon–Fri, 8am–6pm CAT)" },
-  { icon: <Phone size={15} className="text-amber-600" />, title: "Call us", desc: "+250 788 000 111 · EstateX owner helpline" },
-  { icon: <ShieldCheck size={15} className="text-stone-500" />, title: "Compliance FAQ", desc: "Permits, KYC, notary sign-offs & escrow rules" },
+  { icon: <BookOpen size={15} className="text-[#1E3A5F]" />, title: "Documentation", desc: "Guides on event setup, team management & scoring" },
+  { icon: <MessageCircle size={15} className="text-emerald-600" />, title: "Live chat support", desc: "Chat with our technical team (Mon–Fri, 8am–6pm CAT)" },
+  { icon: <Phone size={15} className="text-amber-600" />, title: "Call us", desc: "+250 788 000 111 · Admin helpline" },
+  { icon: <ShieldCheck size={15} className="text-stone-500" />, title: "System FAQ", desc: "Permissions, user roles, and security rules" },
 ];
 
 function HelpPanel({ onClose }: { onClose: () => void }) {
   return (
     <div>
       <div className="flex items-center justify-between px-5 py-4 border-b border-stone-100">
-        <p className="font-black text-stone-900 text-[13px]">Help & Support</p>
+        <p className="font-light text-stone-900 text-[13px]">Help & Support</p>
         <button onClick={onClose} className="p-1 rounded-lg hover:bg-stone-100 text-stone-400 transition-colors">
           <X size={14} />
         </button>
@@ -138,7 +138,7 @@ function HelpPanel({ onClose }: { onClose: () => void }) {
               {item.icon}
             </div>
             <div>
-              <p className="text-[12px] font-bold text-stone-800">{item.title}</p>
+              <p className="text-[12px] font-light text-stone-800">{item.title}</p>
               <p className="text-[11px] text-stone-400 mt-0.5 leading-snug">{item.desc}</p>
             </div>
             <ChevronRight size={12} className="text-stone-300 mt-1.5 ml-auto shrink-0 group-hover:text-stone-500 transition-colors" />
@@ -147,9 +147,9 @@ function HelpPanel({ onClose }: { onClose: () => void }) {
       </div>
       <div className="px-5 pb-4">
         <div className="bg-[#1E3A5F]/5 border border-[#1E3A5F]/10 rounded-xl p-3.5">
-          <p className="text-[11px] font-bold text-[#1E3A5F]">🎓 New to EstateX?</p>
-          <p className="text-[10px] text-stone-500 mt-1">Read the Owner Onboarding Guide to get your first project listed in under 48hrs.</p>
-          <button className="mt-2 text-[10px] font-black text-[#1E3A5F] hover:underline">Read guide →</button>
+          <p className="text-[11px] font-light text-[#1E3A5F]">🎓 New to Hackathon Admin?</p>
+          <p className="text-[10px] text-stone-500 mt-1">Read the Admin Onboarding Guide to get your first event setup quickly.</p>
+          <button className="mt-2 text-[10px] font-light text-[#1E3A5F] hover:underline">Read guide →</button>
         </div>
       </div>
     </div>
@@ -174,7 +174,7 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
   return (
     <div>
       <div className="flex items-center justify-between px-5 py-4 border-b border-stone-100">
-        <p className="font-black text-stone-900 text-[13px]">Settings</p>
+        <p className="font-light text-stone-900 text-[13px]">Settings</p>
         <button onClick={onClose} className="p-1 rounded-lg hover:bg-stone-100 text-stone-400 transition-colors">
           <X size={14} />
         </button>
@@ -183,7 +183,7 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
       <div className="p-4 space-y-4">
         {/* Account */}
         <div>
-          <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2 px-1">Account</p>
+          <p className="text-[9px] font-light text-stone-400 uppercase tracking-widest mb-2 px-1">Account</p>
           <div className="space-y-1">
             {[
               { icon: <User size={13} />, label: "Edit profile" },
@@ -192,7 +192,7 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
             ].map((item) => (
               <button key={item.label} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-stone-50 text-stone-700 transition-colors text-left">
                 <span className="text-stone-400">{item.icon}</span>
-                <span className="text-[12px] font-semibold">{item.label}</span>
+                <span className="text-[12px] font-normal">{item.label}</span>
                 <ChevronRight size={12} className="text-stone-300 ml-auto" />
               </button>
             ))}
@@ -201,7 +201,7 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
 
         {/* Notifications */}
         <div>
-          <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2 px-1">Notifications</p>
+          <p className="text-[9px] font-light text-stone-400 uppercase tracking-widest mb-2 px-1">Notifications</p>
           <div className="space-y-2">
             {[
               { label: "Email alerts", val: emailAlerts, set: setEmailAlerts },
@@ -209,7 +209,7 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
               { label: "Investor activity", val: investorAlerts, set: setInvestorAlerts },
             ].map((row) => (
               <button key={row.label} onClick={() => row.set(!row.val)} className="w-full flex items-center justify-between px-3 py-2 rounded-xl hover:bg-stone-50 transition-colors">
-                <span className="text-[12px] font-semibold text-stone-700">{row.label}</span>
+                <span className="text-[12px] font-normal text-stone-700">{row.label}</span>
                 <Toggle2 on={row.val} />
               </button>
             ))}
@@ -218,9 +218,9 @@ function SettingsPanel({ onClose }: { onClose: () => void }) {
 
         {/* Security */}
         <div>
-          <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2 px-1">Security</p>
+          <p className="text-[9px] font-light text-stone-400 uppercase tracking-widest mb-2 px-1">Security</p>
           <button onClick={() => setTwoFA(!twoFA)} className="w-full flex items-center justify-between px-3 py-2 rounded-xl hover:bg-stone-50 transition-colors">
-            <span className="text-[12px] font-semibold text-stone-700">Two-factor authentication</span>
+            <span className="text-[12px] font-normal text-stone-700">Two-factor authentication</span>
             <Toggle2 on={twoFA} />
           </button>
         </div>
@@ -239,14 +239,14 @@ function ProfilePanel({ onClose }: { onClose: () => void }) {
           <X size={12} />
         </button>
         <div className="relative z-10 flex items-center gap-3">
-          <div className="w-11 h-11 rounded-full bg-white/20 border-2 border-white/30 flex items-center justify-center text-white font-black text-sm">
-            JP
+          <div className="w-11 h-11 rounded-full bg-white/20 border-2 border-white/30 flex items-center justify-center text-white font-light text-sm">
+            ST
           </div>
           <div>
-            <p className="text-white font-black text-[14px] leading-tight">Jean-Paul Mugisha</p>
-            <p className="text-white/50 text-[10px] mt-0.5">jean.mugisha@estatex.rw</p>
-            <span className="inline-flex items-center gap-1 mt-1 text-[9px] font-bold text-emerald-300 bg-emerald-500/15 border border-emerald-500/20 px-2 py-0.5 rounded-full">
-              <CheckCircle size={8} /> Verified Owner
+            <p className="text-white font-light text-[14px] leading-tight">Teacher</p>
+            <p className="text-white/50 text-[10px] mt-0.5">teacher@rca.ac.rw</p>
+            <span className="inline-flex items-center gap-1 mt-1 text-[9px] font-light text-[#1E3A5F] bg-white/90 border border-white px-2 py-0.5 rounded-full">
+              <ShieldCheck size={8} /> Mentor & Judge
             </span>
           </div>
         </div>
@@ -255,34 +255,32 @@ function ProfilePanel({ onClose }: { onClose: () => void }) {
       {/* Stats row */}
       <div className="grid grid-cols-3 divide-x divide-stone-100 border-b border-stone-100">
         {[
-          { val: "4", label: "Projects" },
-          { val: "$850K", label: "Raised" },
-          { val: "58%", label: "Avg. funded" },
+          { val: "24", label: "Teams" },
+          { val: "18", label: "Mentors" },
+          { val: "5", label: "Judges" },
         ].map((s) => (
           <div key={s.label} className="py-3 text-center">
-            <p className="font-black text-stone-900 text-[13px]">{s.val}</p>
-            <p className="text-[9px] text-stone-400 font-semibold mt-0.5 uppercase tracking-wide">{s.label}</p>
+            <p className="font-light text-stone-900 text-[13px]">{s.val}</p>
+            <p className="text-[9px] text-stone-400 font-normal mt-0.5 uppercase tracking-wide">{s.label}</p>
           </div>
         ))}
       </div>
 
-      {/* Menu items */}
       <div className="p-3 space-y-0.5">
         {[
           { icon: <User size={13} />, label: "View profile" },
-          { icon: <CreditCard size={13} />, label: "Payout & wallet" },
-          { icon: <Settings size={13} />, label: "Account settings" },
+          { icon: <CreditCard size={13} />, label: "Account settings" },
         ].map((item) => (
           <button key={item.label} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-stone-50 text-stone-700 transition-colors">
             <span className="text-stone-400">{item.icon}</span>
-            <span className="text-[12px] font-semibold">{item.label}</span>
+            <span className="text-[12px] font-normal">{item.label}</span>
             <ChevronRight size={12} className="text-stone-300 ml-auto" />
           </button>
         ))}
       </div>
 
       <div className="px-4 pb-4">
-        <button className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-red-100 text-red-500 hover:bg-red-50 transition-colors text-[12px] font-bold">
+        <button className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-red-100 text-red-500 hover:bg-red-50 transition-colors text-[12px] font-light">
           <LogOut size={13} /> Sign out
         </button>
       </div>
@@ -291,15 +289,36 @@ function ProfilePanel({ onClose }: { onClose: () => void }) {
 }
 
 // ── View filter panel ─────────────────────────────────────────────
-function FiltersPanel({ onClose }: { onClose: () => void }) {
-  const [density, setDensity] = useState<"comfortable" | "compact">("comfortable");
-  const [showMap, setShowMap] = useState(true);
-  const [showStats, setShowStats] = useState(true);
+interface FiltersPanelProps {
+  onClose: () => void;
+  prefs?: {
+    density: "comfortable" | "compact";
+    showMap: boolean;
+    showStats: boolean;
+  };
+  onApplyPrefs?: React.Dispatch<React.SetStateAction<{
+    density: "comfortable" | "compact";
+    showMap: boolean;
+    showStats: boolean;
+  }>>;
+}
+
+function FiltersPanel({ onClose, prefs, onApplyPrefs }: FiltersPanelProps) {
+  const [density, setDensity] = useState<"comfortable" | "compact">(prefs?.density || "comfortable");
+  const [showMap, setShowMap] = useState(prefs?.showMap ?? true);
+  const [showStats, setShowStats] = useState(prefs?.showStats ?? true);
+
+  const handleApply = () => {
+    if (onApplyPrefs) {
+      onApplyPrefs({ density, showMap, showStats });
+    }
+    onClose();
+  };
 
   return (
     <div>
       <div className="flex items-center justify-between px-5 py-4 border-b border-stone-100">
-        <p className="font-black text-stone-900 text-[13px]">Dashboard view</p>
+        <p className="font-light text-stone-900 text-[13px]">Dashboard view</p>
         <button onClick={onClose} className="p-1 rounded-lg hover:bg-stone-100 text-stone-400 transition-colors">
           <X size={14} />
         </button>
@@ -307,13 +326,13 @@ function FiltersPanel({ onClose }: { onClose: () => void }) {
       <div className="p-4 space-y-5">
         {/* Density */}
         <div>
-          <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">Layout density</p>
+          <p className="text-[9px] font-light text-stone-400 uppercase tracking-widest mb-2">Layout density</p>
           <div className="grid grid-cols-2 gap-2">
             {(["comfortable", "compact"] as const).map((d) => (
               <button
                 key={d}
                 onClick={() => setDensity(d)}
-                className={`flex items-center justify-center gap-2 py-2.5 rounded-xl border text-[11px] font-bold transition-all ${
+                className={`flex items-center justify-center gap-2 py-2.5 rounded-xl border text-[11px] font-light transition-all ${
                   density === d
                     ? "bg-[#1E3A5F] text-white border-[#1E3A5F]"
                     : "bg-white text-stone-600 border-stone-200 hover:border-stone-300"
@@ -328,14 +347,13 @@ function FiltersPanel({ onClose }: { onClose: () => void }) {
 
         {/* Widgets */}
         <div>
-          <p className="text-[9px] font-black text-stone-400 uppercase tracking-widest mb-2">Visible widgets</p>
+          <p className="text-[9px] font-light text-stone-400 uppercase tracking-widest mb-2">Visible widgets</p>
           <div className="space-y-2">
             {[
-              { icon: <Map size={13} />, label: "Project sites map", val: showMap, set: setShowMap },
-              { icon: <BarChart2 size={13} />, label: "Portfolio stats", val: showStats, set: setShowStats },
+              { icon: <BarChart2 size={13} />, label: "Event Snapshot", val: showStats, set: setShowStats },
             ].map((row) => (
               <button key={row.label} onClick={() => row.set(!row.val)} className="w-full flex items-center justify-between px-3 py-2 rounded-xl hover:bg-stone-50 transition-colors">
-                <span className="flex items-center gap-2 text-[12px] font-semibold text-stone-700">
+                <span className="flex items-center gap-2 text-[12px] font-normal text-stone-700">
                   <span className="text-stone-400">{row.icon}</span>{row.label}
                 </span>
                 <Toggle2 on={row.val} />
@@ -344,7 +362,7 @@ function FiltersPanel({ onClose }: { onClose: () => void }) {
           </div>
         </div>
 
-        <button className="w-full py-2.5 bg-[#1E3A5F] text-white text-[11px] font-black rounded-xl hover:bg-[#2a4d75] transition-colors">
+        <button onClick={handleApply} className="w-full py-2.5 bg-[#1E3A5F] text-white text-[11px] font-light rounded-xl hover:bg-[#2a4d75] transition-colors">
           Apply preferences
         </button>
       </div>
@@ -442,11 +460,11 @@ const Header = ({ prefs, onApplyPrefs }: HeaderProps) => {
             className="flex items-center gap-2.5 hover:bg-stone-50 px-2.5 py-1 rounded-xl border border-transparent hover:border-gray-200 transition-all cursor-pointer"
           >
             <div className="text-right hidden sm:block">
-              <p className="font-bold text-gray-700 text-[12px] leading-none mb-0.5">Jean-Paul M.</p>
-              <p className="text-[9px] text-gray-400 font-medium tracking-tight">Verified owner</p>
+              <p className="font-light text-gray-700 text-[12px] leading-none mb-0.5">Teacher</p>
+              <p className="text-[9px] text-gray-400 font-light tracking-tight">Mentor & Judge</p>
             </div>
-            <div className="w-7 h-7 rounded-full bg-[#1E3A5F]/15 border border-white flex items-center justify-center text-[10px] font-black text-[#1E3A5F] shrink-0">
-              JP
+            <div className="w-7 h-7 rounded-full bg-[#1E3A5F]/15 border border-white flex items-center justify-center text-[10px] font-light text-[#1E3A5F] shrink-0">
+              ST
             </div>
           </button>
           <Dropdown open={openPanel === "profile"} onClose={() => setOpenPanel(null)} width="w-[260px]">
@@ -464,7 +482,7 @@ const Header = ({ prefs, onApplyPrefs }: HeaderProps) => {
             <SlidersHorizontal size={16} />
           </button>
           <Dropdown open={openPanel === "filters"} onClose={() => setOpenPanel(null)} width="w-[260px]">
-            <FiltersPanel onClose={() => setOpenPanel(null)} />
+            <FiltersPanel onClose={() => setOpenPanel(null)} prefs={prefs} onApplyPrefs={onApplyPrefs} />
           </Dropdown>
         </div>
       </div>

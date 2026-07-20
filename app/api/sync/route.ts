@@ -33,8 +33,8 @@ export async function POST(req: Request) {
     const updated = { ...existing, ...data };
     fs.writeFileSync(SYNC_FILE, JSON.stringify(updated, null, 2), "utf8");
     return NextResponse.json({ success: true });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Error writing sync file:", err);
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+    return NextResponse.json({ success: false, error: err instanceof Error ? err.message : String(err) }, { status: 500 });
   }
 }

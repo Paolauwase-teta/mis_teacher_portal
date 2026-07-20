@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
-  Building, 
+  Code, 
   Chrome, 
   Github, 
   Eye, 
@@ -14,18 +14,10 @@ import {
 
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import QuickAccess from "./components/QuickAccess";
-import OwnerProjectsTable from "./components/OwnerProjectsTable";
-import ProjectSubmission from "./components/ProjectSubmission";
-import MilestoneReporting from "./components/MilestoneReporting";
-import OwnerDocuments from "./components/OwnerDocuments";
-import FundRequests from "./components/FundRequests";
-import OwnerSitesMap from "./components/OwnerSitesMap";
-import InvestorRelations from "./components/InvestorRelations";
-import RevenuePayouts from "./components/RevenuePayouts";
-import GovVerificationStatus from "./components/GovVerificationStatus";
-import EvaluatorVerdicts from "./components/EvaluatorVerdicts";
-import Appeals from "./components/Appeals";
+import DashboardOverview from "./components/DashboardOverview";
+import MyTeams from "./components/MyTeams";
+import TeamCommunication from "./components/TeamCommunication";
+import JudgingScoring from "./components/JudgingScoring";
 
 
 export default function Home() {
@@ -37,22 +29,8 @@ export default function Home() {
 
   const handleNavigate = (view: string) => {
     setActiveSidebarView(view);
-    if (view === "documents") {
-      setWizardStep(1);
-      setCurrentView("submit");
-    } else if (view === "appeals") {
-      setWizardStep(2);
-      setCurrentView("submit");
-    } else if (view === "funds") {
-      setWizardStep(3);
-      setCurrentView("submit");
-    } else if (view === "milestones") {
-      setWizardStep(4);
-      setCurrentView("submit");
-    } else {
-      setWizardStep(null);
-      setCurrentView(view);
-    }
+    setWizardStep(null);
+    setCurrentView(view);
   };
 
   // Dashboard view preferences
@@ -91,38 +69,15 @@ export default function Home() {
 
   const renderContent = () => {
     switch (currentView) {
-      case "submit":
-        return <ProjectSubmission onNavigate={handleNavigate} initialStep={wizardStep} mode="new" />;
-      case "milestones":
-        return <MilestoneReporting />;
-      case "documents":
-        return <OwnerDocuments />;
-      case "funds":
-        return <FundRequests />;
-      case "map":
-        return <OwnerSitesMap />;
-      case "investors":
-        return <InvestorRelations />;
-      case "revenue":
-        return <RevenuePayouts />;
-      case "gov-checks":
-        return <ProjectSubmission onNavigate={handleNavigate} initialStep={wizardStep} mode="existing" />;
-      case "verdicts":
-        return <EvaluatorVerdicts />;
-      case "appeals":
-        return <Appeals />;
+      case "myteams":
+        return <MyTeams />;
+      case "communication":
+        return <TeamCommunication />;
+      case "judging":
+        return <JudgingScoring />;
       case "dashboard":
       default:
-        return (
-          <div className="flex-1 overflow-y-auto custom-scrollbar p-0">
-            <QuickAccess 
-              density={prefs.density} 
-              showStats={prefs.showStats} 
-              onOpenChecklist={() => handleNavigate("documents")} 
-            />
-            <OwnerProjectsTable density={prefs.density} />
-          </div>
-        );
+        return <DashboardOverview prefs={prefs} />;
     }
   };
 
@@ -135,7 +90,7 @@ export default function Home() {
           {/* Background photo */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url('/estate_hero.png')" }}
+            style={{ backgroundImage: "url('/rca_students.jpg')" }}
           />
           {/* Dark gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/40 to-black/75" />
@@ -149,9 +104,9 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <div className="h-8 w-8 rounded-lg bg-white/15 backdrop-blur-sm border border-white/25 flex items-center justify-center">
-                <Building size={15} className="text-white" />
+                <Code size={15} className="text-white" strokeWidth={3} />
               </div>
-              <span className="text-white font-black text-[17px] tracking-tight">EstateX</span>
+              <span className="text-white font-normal text-[17px] tracking-tight">RCA Hackathon</span>
             </motion.div>
           </div>
 
@@ -163,13 +118,13 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.25 }}
               className="mb-8"
             >
-              <h2 className="text-[2.4rem] font-black leading-[1.1] tracking-tight text-white mb-3">
-                {isSignUp ? "Join EstateX" : "Access EstateX"}
+              <h2 className="text-[2.4rem] font-light leading-[1.1] tracking-tight text-white mb-3">
+                {isSignUp ? "Join Hackathon" : "School Account Login"}
               </h2>
               <p className="text-white/70 text-[13.5px] leading-relaxed max-w-[320px]">
                 {isSignUp
-                  ? "Register your property and unlock crowdfunded investment on EstateX."
-                  : "Access your fractional real estate owner workspace."}
+                  ? "Register your team and access the hackathon portal."
+                  : "Access the RCA Hackathon Teacher Portal to mentor teams and score projects."}
               </p>
             </motion.div>
 
@@ -181,13 +136,13 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               {(isSignUp ? [
-                { n: 1, text: "Register owner identity" },
-                { n: 2, text: "Verify property details" },
+                { n: 1, text: "Register user identity" },
+                { n: 2, text: "Verify team details" },
                 { n: 3, text: "Activate portal dashboard" },
               ] : [
                 { n: 1, text: "Enter your credentials" },
-                { n: 2, text: "Verify your identity (KYC)" },
-                { n: 3, text: "Access your owner dashboard" },
+                { n: 2, text: "Verify teacher role" },
+                { n: 3, text: "Access teacher dashboard" },
               ]).map((step, i) => (
                 <div
                   key={step.n}
@@ -197,12 +152,12 @@ export default function Home() {
                       : "bg-white/10 backdrop-blur-sm border border-white/15 text-white/80"
                   }`}
                 >
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center font-black text-xs shrink-0 ${
+                  <div className={`w-7 h-7 rounded-full flex items-center justify-center font-light text-xs shrink-0 ${
                     i === 0 ? "bg-[#1E3A5F] text-white" : "bg-white/15 text-white/60"
                   }`}>
                     {step.n}
                   </div>
-                  <span className="text-[13px] font-semibold">{step.text}</span>
+                  <span className="text-[13px] font-normal">{step.text}</span>
                 </div>
               ))}
             </motion.div>
@@ -220,11 +175,11 @@ export default function Home() {
           >
             {/* Header */}
             <div className="space-y-2">
-              <h1 className="text-3xl font-black tracking-tight text-stone-900">
-                Access Your Space
+              <h1 className="text-[26px] font-light tracking-tight text-gray-700">
+                School Account Login
               </h1>
-              <p className="text-stone-500 text-sm">
-                Provide your login credentials to continue.
+              <p className="text-gray-400 text-[15px] font-normal">
+                Log In to your account
               </p>
             </div>
 
@@ -247,7 +202,7 @@ export default function Home() {
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-stone-200"></div>
               </div>
-              <span className="relative bg-white px-4 text-xs font-semibold text-stone-400 uppercase tracking-widest">
+              <span className="relative bg-white px-4 text-xs font-normal text-stone-400 uppercase tracking-widest">
                 Or
               </span>
             </div>
@@ -265,7 +220,7 @@ export default function Home() {
               {/* Email */}
               <InputGroup 
                 label="Email Address" 
-                placeholder="e.g. jean.mugisha@estatex.rw" 
+                placeholder="Email" 
                 type="email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -275,7 +230,7 @@ export default function Home() {
               {/* Password */}
               <InputGroup 
                 label="Password" 
-                placeholder="••••••••••••" 
+                placeholder="Password" 
                 type={showPassword ? "text" : "password"} 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -291,21 +246,24 @@ export default function Home() {
                   </button>
                 }
               />
-              <div className="flex justify-between items-center px-1">
-                <span className="text-[11px] text-stone-400">
-                  Requires at least 8 symbols.
-                </span>
-                <button type="button" className="text-[11px] text-[#1E3A5F] hover:underline font-semibold">
-                  Forgot Password?
+              <div className="flex justify-between items-center px-1 mt-1">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" className="rounded border-gray-300 text-[#1E3A5F] focus:ring-[#1E3A5F] w-4 h-4" />
+                  <span className="text-[14px] font-normal text-gray-500">
+                    Remember Me
+                  </span>
+                </label>
+                <button type="button" className="text-[14px] text-gray-800 hover:text-black font-light">
+                  Forgot my password
                 </button>
               </div>
 
               {/* Submit Button (styled with brand main color #1E3A5F) */}
               <button 
                 type="submit" 
-                className="w-full h-14 bg-[#1E3A5F] text-white hover:bg-[#1E3A5F]/95 active:scale-[0.98] font-semibold rounded-xl transition-all mt-4 cursor-pointer flex items-center justify-center gap-2 group shadow-md shadow-[#1E3A5F]/20"
+                className="w-full h-14 bg-[#1E3A5F] text-white hover:bg-[#1E3A5F]/95 active:scale-[0.98] font-light rounded-xl transition-all mt-4 cursor-pointer flex items-center justify-center gap-2 group shadow-md shadow-[#1E3A5F]/20"
               >
-                <span>Access Workspace</span>
+                <span>Access Teacher Portal</span>
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -388,7 +346,7 @@ function StepItem({ number, text, active = false }: StepItemProps) {
       }`}
     >
       <div 
-        className={`h-7 w-7 rounded-full flex items-center justify-center font-bold text-xs shrink-0 transition-all ${
+        className={`h-7 w-7 rounded-full flex items-center justify-center font-light text-xs shrink-0 transition-all ${
           active 
             ? "bg-[#1E3A5F] text-white shadow-sm" 
             : "bg-white/15 text-white/40"
@@ -396,7 +354,7 @@ function StepItem({ number, text, active = false }: StepItemProps) {
       >
         {number}
       </div>
-      <span className="text-[12.5px] font-semibold tracking-wide">{text}</span>
+      <span className="text-[12.5px] font-normal tracking-wide">{text}</span>
     </div>
   );
 }
@@ -412,7 +370,7 @@ function SocialButton({ icon, label, onClick }: SocialButtonProps) {
     <button 
       type="button" 
       onClick={onClick}
-      className="flex items-center justify-center gap-2.5 bg-white border border-stone-200 rounded-xl py-3 hover:bg-stone-50 transition-all text-xs font-semibold text-stone-700 cursor-pointer active:scale-[0.98] w-full shadow-sm"
+      className="flex items-center justify-center gap-2.5 bg-white border border-stone-200 rounded-xl py-3 hover:bg-stone-50 transition-all text-xs font-normal text-stone-700 cursor-pointer active:scale-[0.98] w-full shadow-sm"
     >
       {icon}
       <span>{label}</span>
@@ -441,7 +399,7 @@ function InputGroup({
 }: InputGroupProps) {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <label className="text-[11px] font-black text-stone-500 uppercase tracking-widest px-0.5">
+      <label className="text-[11px] font-normal text-stone-500 uppercase tracking-widest px-0.5">
         {label}
       </label>
       <div className="relative w-full">
@@ -451,7 +409,7 @@ function InputGroup({
           value={value}
           onChange={onChange}
           required={required}
-          className="w-full bg-white border border-stone-200 rounded-xl h-11 px-4 text-stone-900 text-[13px] placeholder:text-stone-300 focus:border-[#1E3A5F] focus:ring-2 focus:ring-[#1E3A5F]/15 outline-none transition-all shadow-sm"
+          className="w-full bg-white border border-stone-200 rounded-xl h-11 px-4 text-stone-900 text-[15px] font-normal placeholder:text-gray-500 placeholder:font-normal focus:border-[#1E3A5F] focus:ring-2 focus:ring-[#1E3A5F]/15 outline-none transition-all shadow-sm"
         />
         {rightElement && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center">
